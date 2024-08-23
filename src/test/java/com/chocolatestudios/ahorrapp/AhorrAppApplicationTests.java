@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.chocolatestudios.ahorrapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class AhorrAppApplicationTests {
 
   @Test
   void contextLoads() {

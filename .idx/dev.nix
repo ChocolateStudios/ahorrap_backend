@@ -9,12 +9,17 @@
     pkgs.maven
   ];
   # Sets environment variables in the workspace
-  env = {};
+  env = {
+    SPRING_PROFILES_ACTIVE="dev";
+  };
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
       "vscjava.vscode-java-pack"
       "rangav.vscode-thunder-client"
+      "hediet.vscode-drawio"
+      "cweijan.vscode-mysql-client2"
+      "ms-azuretools.vscode-azureappservice"
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
