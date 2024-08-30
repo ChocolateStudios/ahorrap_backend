@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.chocolatestudios.ahorrapp.contexts.profiles.models.Profile;
 import com.chocolatestudios.ahorrapp.contexts.profiles.resources.ProfileResource;
+import com.chocolatestudios.ahorrapp.contexts.expenses.models.Expense;
+import com.chocolatestudios.ahorrapp.contexts.expenses.resources.ExpenseResource;
 
 @Configuration
 public class ModelMapperConfig {
@@ -18,6 +20,13 @@ public class ModelMapperConfig {
             @Override
             protected void configure() {
                 map().setUserId(source.getUserId());
+            }
+        });
+        
+        mapper.addMappings(new PropertyMap<Expense, ExpenseResource>() {
+            @Override
+            protected void configure() {
+                map().setProfileId(source.getProfileId());
             }
         });
 

@@ -1,7 +1,7 @@
 package com.chocolatestudios.ahorrapp.contexts.expenses.resources;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
@@ -25,7 +25,7 @@ public class SaveExpenseResource {
     @NotNull(message = "Date cannot be null")
     @PastOrPresent(message = "Date must be in the past or present")
     @Column
-    private LocalDate date;
+    private LocalDateTime dateTime;
 
     public String getDescription() {
         return description;
@@ -45,12 +45,12 @@ public class SaveExpenseResource {
         return this;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public SaveExpenseResource setDate(LocalDate date) {
-        this.date = date;
+    public SaveExpenseResource setDateTime(LocalDateTime date) {
+        this.dateTime = date;
         return this;
     }
 }

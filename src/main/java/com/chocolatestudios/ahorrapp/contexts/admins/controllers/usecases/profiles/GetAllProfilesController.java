@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chocolatestudios.ahorrapp.contexts.admins.usecases.profiles.GetAllProfilesUseCase;
-import com.chocolatestudios.ahorrapp.contexts.users.resources.UserResource;
+import com.chocolatestudios.ahorrapp.contexts.profiles.resources.ProfileResource;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -30,8 +30,8 @@ public class GetAllProfilesController {
             @ApiResponse(responseCode = "200", description = "Success", content = { @Content(mediaType = "application/json") }),
     })
     @GetMapping
-    public List<UserResource> getAllProfiles() {
-        var userResources = getAllProfilesUseCase.getAllProfiles();
-        return userResources;
+    public List<ProfileResource> getAllProfiles() {
+        var profileResources = getAllProfilesUseCase.getAllProfiles();
+        return profileResources;
     }
 }

@@ -2,17 +2,13 @@ package com.chocolatestudios.ahorrapp.contexts.users.usecases;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.chocolatestudios.ahorrapp._utils.JwtUtils;
 import com.chocolatestudios.ahorrapp.contexts._shared.exceptions.BadRequestException;
-import com.chocolatestudios.ahorrapp.contexts._shared.exceptions.ConflictException;
 import com.chocolatestudios.ahorrapp.contexts._shared.usecases.AuthenticatedUserUseCase;
 import com.chocolatestudios.ahorrapp.contexts.users.models.User;
 import com.chocolatestudios.ahorrapp.contexts.users.repositories.UserRepository;
-import com.chocolatestudios.ahorrapp.contexts.users.resources.AuthenticatedUserResource;
 import com.chocolatestudios.ahorrapp.contexts.users.resources.SaveUserResource;
 import com.chocolatestudios.ahorrapp.contexts.users.resources.UserResource;
 

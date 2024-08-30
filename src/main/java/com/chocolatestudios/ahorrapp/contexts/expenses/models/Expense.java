@@ -41,7 +41,7 @@ public class Expense implements Serializable {
     @NotNull(message = "Date and time cannot be null")
     @PastOrPresent(message = "Date and time must be in the past or present")
     @Column
-    private LocalDateTime date;
+    private LocalDateTime dateTime;
 
     @NotNull(message = "Profile ID cannot be null")
     @Column(name = "profile_id")
@@ -50,4 +50,58 @@ public class Expense implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id", insertable = false, updatable = false)
     private Profile profile;
+
+    public Long getId() {
+        return id;
+    }
+
+    public Expense setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Expense setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public Expense setAmount(BigDecimal amount) {
+        this.amount = amount;
+        return this;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public Expense setDateTime(LocalDateTime date) {
+        this.dateTime = date;
+        return this;
+    }
+
+    public Long getProfileId() {
+        return profileId;
+    }
+
+    public Expense setProfileId(Long profileId) {
+        this.profileId = profileId;
+        return this;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public Expense setProfile(Profile profile) {
+        this.profile = profile;
+        return this;
+    }
 }

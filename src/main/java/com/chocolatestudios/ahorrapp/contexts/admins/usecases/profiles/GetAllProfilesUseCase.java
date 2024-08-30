@@ -6,21 +6,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chocolatestudios.ahorrapp.contexts.users.models.User;
-import com.chocolatestudios.ahorrapp.contexts.users.repositories.UserRepository;
-import com.chocolatestudios.ahorrapp.contexts.users.resources.UserResource;
+import com.chocolatestudios.ahorrapp.contexts.profiles.models.Profile;
+import com.chocolatestudios.ahorrapp.contexts.profiles.repositories.ProfileRepository;
+import com.chocolatestudios.ahorrapp.contexts.profiles.resources.ProfileResource;
 
 @Service
 public class GetAllProfilesUseCase {
     @Autowired
     private ModelMapper mapper;
     @Autowired
-    private UserRepository userRepository;
+    private ProfileRepository profileRepository;
 
-    public List<UserResource> getAllProfiles() {
-        List<User> users = userRepository.findAll();
-        List<UserResource> userResources = users.stream().map(user -> mapper.map(user, UserResource.class)).toList();
-
-        return userResources;
+    public List<ProfileResource> getAllProfiles() {
+        List<Profile> profiles = profileRepository.findAll();
+        List<ProfileResource> profileResources = profiles.stream().map(profile -> mapper.map(profile, ProfileResource.class)).toList();
+        return profileResources;
     }
 }

@@ -2,7 +2,9 @@ package com.chocolatestudios.ahorrapp.contexts.expenses.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,14 +15,13 @@ import com.chocolatestudios.ahorrapp.contexts.expenses.usecases.UpdateExpenseUse
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @Tag(name = "Expenses")
 @RestController
-@RequestMapping("/api/v1/expenses")
+@RequestMapping("/api/v1/expenses/{expenseId}")
 @CrossOrigin
 public class UpdateExpenseController {
     @Autowired
@@ -31,8 +32,8 @@ public class UpdateExpenseController {
             @ApiResponse(responseCode = "200", description = "Expense updated", content = @Content(mediaType = "application/json"))
     })
     @PutMapping
-    public ExpenseResource updateExpense(@Valid @RequestBody SaveExpenseResource saveExpenseResource) {
-        var expenseResource = updateExpenseUseCase.updateExpense(saveExpenseResource);
+    public ExpenseResource updateExpense(@PathVariable Long expenseId, @Valid @RequestBody SaveExpenseResource saveExpenseResource) {
+        var expenseResource = updateExpenseUseCase.updateExpense(expenseId, saveExpenseResource);
         return expenseResource;
     }
 }

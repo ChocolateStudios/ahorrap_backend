@@ -25,9 +25,9 @@ public class GetAllExpensesController {
     @Autowired
     private GetAllExpensesUseCase getAllExpensesUseCase;
     
-    @Operation(summary = "Create expense", description = "Create an expense")
+    @Operation(summary = "Get all expenses", description = "Get all expenses")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Expense created", content = @Content(mediaType = "application/json"))
+            @ApiResponse(responseCode = "200", description = "Expenses obtained", content = @Content(mediaType = "application/json"))
     })
     @GetMapping
     public List<ExpenseResource> getAllExpenses() {

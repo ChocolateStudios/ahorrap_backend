@@ -7,7 +7,7 @@ public class ExpenseResource {
     private Long id;
     private String description;
     private BigDecimal amount;
-    private LocalDateTime date;
+    private LocalDateTime dateTime;
     private Long profileId;
 
     public Long getId() {
@@ -31,11 +31,11 @@ public class ExpenseResource {
         this.amount = amount;
         return this;
     }
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
-    public ExpenseResource setDate(LocalDateTime date) {
-        this.date = date;
+    public ExpenseResource setDateTime(LocalDateTime date) {
+        this.dateTime = date;
         return this;
     }
     public Long getProfileId() {
