@@ -7,6 +7,6 @@ import com.chocolatestudios.ahorrapp.contexts.users.models.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Boolean existsByEmail(String email);
-    User findByEmail(String email);
+    Boolean existsByUsername(String username);
+    User findByUsername(String username);
 }

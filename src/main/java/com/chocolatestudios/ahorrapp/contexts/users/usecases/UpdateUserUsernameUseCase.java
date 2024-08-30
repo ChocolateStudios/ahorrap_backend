@@ -3,19 +3,19 @@ package com.chocolatestudios.ahorrapp.contexts.users.usecases;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.chocolatestudios.ahorrapp._utils.JwtUtils;
 import com.chocolatestudios.ahorrapp.contexts._shared.exceptions.BadRequestException;
 import com.chocolatestudios.ahorrapp.contexts._shared.exceptions.ConflictException;
+import com.chocolatestudios.ahorrapp.contexts._shared.usecases.AuthenticatedUserUseCase;
 import com.chocolatestudios.ahorrapp.contexts.users.models.User;
 import com.chocolatestudios.ahorrapp.contexts.users.repositories.UserRepository;
 import com.chocolatestudios.ahorrapp.contexts.users.resources.AuthenticatedUserResource;
 import com.chocolatestudios.ahorrapp.contexts.users.resources.SaveUserResource;
 
 @Service
-public class RegisterUserUseCase {
+public class UpdateUserUsernameUseCase extends AuthenticatedUserUseCase {
     @Autowired
     private ModelMapper mapper;
     @Autowired
@@ -24,26 +24,30 @@ public class RegisterUserUseCase {
     private JwtUtils jwtUtils;
     @Autowired
     private UserDetailsService userDetailsService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
-    public AuthenticatedUserResource registerUser(SaveUserResource saveUserResource) {
-        if (userRepository.existsByUsername(saveUserResource.getUsername()))
+    public AuthenticatedUserResource updateUserUsername(SaveUserResource saveUserResource) {
+        User authenticatedUser = GetAuthenticatedUserOrThrowException();
+
+        if (authenticatedUser.getUsername() == saveUserResource.getUsername())
+            throw new BadRequestException("Username cannot be the same");
+        
+        User existingOtherUser = userRepository.findByUsername(saveUserResource.getUsername());
+
+        if (existingOtherUser != null)
             throw new ConflictException("User", "username", saveUserResource.getUsername());
 
-        User user = mapper.map(saveUserResource, User.class);
+        authenticatedUser.setUsername(saveUserResource.getUsername());
 
         try {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            userRepository.save(user);
+            userRepository.save(authenticatedUser);
         } catch (Exception e) {
-            throw new BadRequestException("An error occurred while saving the use: " + e.getMessage());
+            throw new BadRequestException("An error occurred while updating the user: " + e.getMessage());
         }
-        
-        var userDetails = userDetailsService.loadUserByUsername(saveUserResource.getUsername());
+
+        var userDetails = userDetailsService.loadUserByUsername(authenticatedUser.getUsername());
         String token = jwtUtils.generateToken(userDetails);
 
-        var resource = mapper.map(user, AuthenticatedUserResource.class);
+        var resource = mapper.map(authenticatedUser, AuthenticatedUserResource.class);
         resource.setToken(token);
 
         return resource;

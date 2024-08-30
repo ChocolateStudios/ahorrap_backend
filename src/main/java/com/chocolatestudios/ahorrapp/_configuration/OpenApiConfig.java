@@ -1,4 +1,4 @@
-package com.chocolatestudios.ahorrapp.configuration;
+package com.chocolatestudios.ahorrapp._configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -22,10 +22,16 @@ public class OpenApiConfig {
                         .version(applicationVersion)
                         .description(applicationDescription))
                 .components(new Components()
-                        .addSecuritySchemes("X-CSRF-TOKEN", new SecurityScheme()
-                                .type(SecurityScheme.Type.APIKEY)
-                                .in(SecurityScheme.In.HEADER)
-                                .name("X-CSRF-TOKEN")))
-                .addSecurityItem(new SecurityRequirement().addList("X-CSRF-TOKEN"));
+                        .addSecuritySchemes("bearerAuth", new SecurityScheme()
+                                .type(SecurityScheme.Type.HTTP)
+                                .scheme("bearer")
+                                .bearerFormat("JWT")))
+                        .addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
+                // .components(new Components()
+                //         .addSecuritySchemes("X-CSRF-TOKEN", new SecurityScheme()
+                //                 .type(SecurityScheme.Type.APIKEY)
+                //                 .in(SecurityScheme.In.HEADER)
+                //                 .name("X-CSRF-TOKEN")))
+                // .addSecurityItem(new SecurityRequirement().addList("X-CSRF-TOKEN"));
     }
 }

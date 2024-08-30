@@ -1,26 +1,24 @@
 package com.chocolatestudios.ahorrapp.contexts.users.resources;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class SaveUserResource {
-    @NotBlank
-    @NotNull
-    @Size(max = 70)
-    private String email;
 
-    @NotBlank
-    @NotNull
-    @Size(max = 70)
+    @NotBlank(message = "Username cannot be blank")
+    @Size(max = 70, message = "Username cannot exceed 70 characters")
+    private String username;
+
+    @NotBlank(message = "Password cannot be blank")
+    @Size(max = 70, message = "Password cannot exceed 255 characters")
     private String password;
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public SaveUserResource setEmail(String email) {
-        this.email = email;
+    public SaveUserResource setUsername(String username) {
+        this.username = username;
         return this;
     }
 
