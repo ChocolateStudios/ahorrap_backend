@@ -40,7 +40,7 @@ public class Expense implements Serializable {
 
     @NotNull(message = "Date and time cannot be null")
     @PastOrPresent(message = "Date and time must be in the past or present")
-    @Column
+    @Column(name = "date_time")
     private LocalDateTime dateTime;
 
     @NotNull(message = "Profile ID cannot be null")

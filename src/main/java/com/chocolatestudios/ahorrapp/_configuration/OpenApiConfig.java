@@ -27,11 +27,5 @@ public class OpenApiConfig {
                                 .scheme("bearer")
                                 .bearerFormat("JWT")))
                         .addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
-                // .components(new Components()
-                //         .addSecuritySchemes("X-CSRF-TOKEN", new SecurityScheme()
-                //                 .type(SecurityScheme.Type.APIKEY)
-                //                 .in(SecurityScheme.In.HEADER)
-                //                 .name("X-CSRF-TOKEN")))
-                // .addSecurityItem(new SecurityRequirement().addList("X-CSRF-TOKEN"));
     }
 }

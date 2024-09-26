@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 
 import com.chocolatestudios.ahorrapp.contexts._shared.resources.ErrorResource;
 
@@ -36,6 +37,18 @@ public class GlobalExceptionHandler {
         ex.getBindingResult().getFieldErrors().forEach(error -> {
             errors.put(error.getField(), error.getDefaultMessage());
         });
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    // HandlerMethodValidationException
+    @ExceptionHandler(HandlerMethodValidationException.class)
+    public ResponseEntity<Map<String, String>> handleHandlerMethodValidationExceptions(HandlerMethodValidationException ex) {
+        Map<String, String> errors = new HashMap<>();
+        
+        ex.getBeanResults().forEach(result -> {
+            errors.put(result.getFieldError().getField(), result.getFieldError().getDefaultMessage());
+        });
+
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 }

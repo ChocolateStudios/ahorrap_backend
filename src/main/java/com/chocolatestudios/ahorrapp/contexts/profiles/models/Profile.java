@@ -29,13 +29,13 @@ public class Profile implements Serializable {
 
     @NotBlank(message = "First name cannot be blank")
     @Size(max = 100, message = "First name cannot exceed 100 characters")
-    @Pattern(regexp = "^[A-Za-z]+$", message = "First name must contain only letters")
+    @Pattern(regexp = "^[A-Za-z ]+$", message = "First name must contain only letters and spaces")
     @Column(name = "first_name")
     private String firstName;
 
     @NotBlank(message = "Last name cannot be blank")
     @Size(max = 100, message = "Last name cannot exceed 100 characters")
-    @Pattern(regexp = "^[A-Za-z]+$", message = "Last name must contain only letters")
+    @Pattern(regexp = "^[A-Za-z ]+$", message = "Last name must contain only letters and spaces")
     @Column(name = "last_name")
     private String lastName;
 

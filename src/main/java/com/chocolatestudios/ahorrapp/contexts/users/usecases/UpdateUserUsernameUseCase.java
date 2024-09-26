@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import com.chocolatestudios.ahorrapp._utils.JwtUtils;
 import com.chocolatestudios.ahorrapp.contexts._shared.exceptions.BadRequestException;
 import com.chocolatestudios.ahorrapp.contexts._shared.exceptions.ConflictException;
 import com.chocolatestudios.ahorrapp.contexts._shared.usecases.AuthenticatedUserUseCase;
+import com.chocolatestudios.ahorrapp.contexts._shared.utils.JwtUtils;
 import com.chocolatestudios.ahorrapp.contexts.users.models.User;
 import com.chocolatestudios.ahorrapp.contexts.users.repositories.UserRepository;
 import com.chocolatestudios.ahorrapp.contexts.users.resources.AuthenticatedUserResource;

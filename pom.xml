@@ -114,6 +114,14 @@
         <artifactId>spring-boot-starter-validation</artifactId>
         <version>3.3.3</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>6.0.23</version>
+    </dependency>
+
+
 
   </dependencies>
 

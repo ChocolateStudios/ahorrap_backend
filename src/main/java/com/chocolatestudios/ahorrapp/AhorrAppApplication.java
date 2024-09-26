@@ -2,23 +2,17 @@ package com.chocolatestudios.ahorrapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
 @EnableJpaAuditing
+@EnableAspectJAutoProxy
 public class AhorrAppApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(AhorrAppApplication.class, args);
-  }
-
-  @EventListener(ApplicationReadyEvent.class)
-  public void afterStartup() {
-    // String version = org.hibernate.Version.getVersionString();
-    // System.out.println("--------------------------\n\nVersión de Hibernate: " + version);
   }
 }

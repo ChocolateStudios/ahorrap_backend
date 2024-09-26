@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.chocolatestudios.ahorrapp._utils.JwtUtils;
 import com.chocolatestudios.ahorrapp.contexts._shared.exceptions.BadCredentialsException;
+import com.chocolatestudios.ahorrapp.contexts._shared.utils.JwtUtils;
 import com.chocolatestudios.ahorrapp.contexts.users.models.User;
 import com.chocolatestudios.ahorrapp.contexts.users.repositories.UserRepository;
 import com.chocolatestudios.ahorrapp.contexts.users.resources.AuthenticatedUserResource;

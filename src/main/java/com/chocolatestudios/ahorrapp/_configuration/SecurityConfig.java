@@ -3,6 +3,7 @@ package com.chocolatestudios.ahorrapp._configuration;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +23,10 @@ import com.chocolatestudios.ahorrapp._middleware.JwtAuthFilter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    @Value("${cors.allowed.origins}") 
+    private List<String> allowedOrigins;
+    @Value("${security.excluded_endpoints}")
+    private List<String> excludedEndpoints;
     @Autowired
     private JwtAuthFilter jwtAuthFilter;
     @Autowired
@@ -33,7 +38,7 @@ public class SecurityConfig {
                     .cors(cors -> cors
                         .configurationSource(request -> {
                             CorsConfiguration config = new CorsConfiguration();
-                            config.setAllowedOrigins(List.of("*")); // Orígenes permitidos
+                            config.setAllowedOrigins(allowedOrigins); // Orígenes permitidos
                             config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")); // Métodos permitidos
                             config.setAllowedHeaders(List.of("*")); // Cabeceras permitidas
                             return config;
@@ -44,7 +49,7 @@ public class SecurityConfig {
                     )
                     .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
-                        .requestMatchers("/api/v1/users", "/api/v1/users/**", "/api/v1/users/register").permitAll()
+                        .requestMatchers(excludedEndpoints.toArray(new String[0])).permitAll()
                         .anyRequest().authenticated()
                     )
                     .sessionManagement(session -> session

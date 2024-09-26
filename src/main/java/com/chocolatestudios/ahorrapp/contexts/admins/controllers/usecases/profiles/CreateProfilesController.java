@@ -16,6 +16,7 @@ import com.chocolatestudios.ahorrapp.contexts.users.resources.UserResource;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 
@@ -32,7 +33,7 @@ public class CreateProfilesController {
             @ApiResponse(responseCode = "200", description = "Success", content = { @Content(mediaType = "application/json") }),
     })
     @PostMapping
-    public List<UserResource> createProfiles(@RequestBody List<SaveUserResource> saveUserResources) {
+    public List<UserResource> createProfiles(@Valid @RequestBody List<SaveUserResource> saveUserResources) {
         var userResources = createProfilesUseCase.createProfiles(saveUserResources);
         return userResources;
     }

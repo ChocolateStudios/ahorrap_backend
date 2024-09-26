@@ -1,4 +1,4 @@
-package com.chocolatestudios.ahorrapp._utils;
+package com.chocolatestudios.ahorrapp.contexts._shared.utils;
 
 import java.time.temporal.ChronoUnit;
 import java.time.Instant;
